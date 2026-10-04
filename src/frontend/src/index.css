@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --radius: 1rem;
+
+    /* Rosa Cálido — light, warm, airy */
+    --background: 0.97 0.018 350;
+    --foreground: 0.24 0.045 350;
+    --card: 1.0 0.004 350;
+    --card-foreground: 0.24 0.045 350;
+    --popover: 1.0 0.004 350;
+    --popover-foreground: 0.24 0.045 350;
+
+    /* Deep raspberry rose — primary actions */
+    --primary: 0.52 0.185 5;
+    --primary-foreground: 0.99 0.008 5;
+
+    --secondary: 0.94 0.028 350;
+    --secondary-foreground: 0.32 0.06 350;
+    --muted: 0.94 0.022 350;
+    --muted-foreground: 0.52 0.03 350;
+
+    /* Softer blush accent for highlights */
+    --accent: 0.9 0.055 350;
+    --accent-foreground: 0.34 0.09 350;
+
+    --destructive: 0.55 0.2 25;
+    --destructive-foreground: 0.99 0.008 25;
+
+    --success: 0.6 0.14 155;
+    --success-foreground: 0.99 0.008 155;
+    --warning: 0.74 0.14 82;
+    --warning-foreground: 0.28 0.05 82;
+
+    --border: 0.91 0.02 350;
+    --input: 0.91 0.02 350;
+    --ring: 0.52 0.185 5;
+
+    --chart-1: 0.62 0.19 5;
+    --chart-2: 0.72 0.13 340;
+    --chart-3: 0.68 0.14 300;
+    --chart-4: 0.7 0.12 30;
+    --chart-5: 0.66 0.1 170;
+
+    --sidebar: 0.98 0.012 350;
+    --sidebar-foreground: 0.24 0.045 350;
+    --sidebar-primary: 0.52 0.185 5;
+    --sidebar-primary-foreground: 0.99 0.008 5;
+    --sidebar-accent: 0.94 0.028 350;
+    --sidebar-accent-foreground: 0.32 0.06 350;
+    --sidebar-border: 0.91 0.02 350;
+    --sidebar-ring: 0.52 0.185 5;
+
+    /* Gradients & atmosphere */
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.58 0.19 5),
+      oklch(0.66 0.16 345)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.98 0.02 350),
+      oklch(0.95 0.03 345)
+    );
+    --gradient-bloom: radial-gradient(
+      60% 60% at 50% 40%,
+      oklch(0.82 0.11 350 / 0.55),
+      oklch(0.9 0.06 350 / 0)
+    );
+
+    /* Motion */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0.155 0.022 350;
+    --foreground: 0.94 0.012 350;
+    --card: 0.2 0.026 350;
+    --card-foreground: 0.94 0.012 350;
+    --popover: 0.2 0.026 350;
+    --popover-foreground: 0.94 0.012 350;
+
+    --primary: 0.72 0.16 5;
+    --primary-foreground: 0.16 0.03 5;
+
+    --secondary: 0.25 0.03 350;
+    --secondary-foreground: 0.88 0.012 350;
+    --muted: 0.25 0.03 350;
+    --muted-foreground: 0.62 0.025 350;
+
+    --accent: 0.32 0.06 350;
+    --accent-foreground: 0.94 0.012 350;
+
+    --destructive: 0.62 0.19 25;
+    --destructive-foreground: 0.96 0.01 25;
+
+    --success: 0.68 0.14 155;
+    --success-foreground: 0.16 0.03 155;
+    --warning: 0.78 0.14 82;
+    --warning-foreground: 0.18 0.03 82;
+
+    --border: 0.3 0.03 350;
+    --input: 0.3 0.03 350;
+    --ring: 0.72 0.16 5;
+
+    --chart-1: 0.72 0.16 5;
+    --chart-2: 0.74 0.12 340;
+    --chart-3: 0.72 0.13 300;
+    --chart-4: 0.76 0.12 30;
+    --chart-5: 0.72 0.1 170;
+
+    --sidebar: 0.2 0.026 350;
+    --sidebar-foreground: 0.94 0.012 350;
+    --sidebar-primary: 0.72 0.16 5;
+    --sidebar-primary-foreground: 0.16 0.03 5;
+    --sidebar-accent: 0.25 0.03 350;
+    --sidebar-accent-foreground: 0.88 0.012 350;
+    --sidebar-border: 0.3 0.03 350;
+    --sidebar-ring: 0.72 0.16 5;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.62 0.17 5),
+      oklch(0.68 0.14 345)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.19 0.026 350),
+      oklch(0.16 0.022 350)
+    );
+    --gradient-bloom: radial-gradient(
+      60% 60% at 50% 40%,
+      oklch(0.5 0.12 350 / 0.45),
+      oklch(0.3 0.06 350 / 0)
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+  .bg-bloom {
+    background-image: var(--gradient-bloom);
+  }
+  .text-gradient-primary {
+    background-image: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shadow-soft {
+    box-shadow: 0 1px 2px oklch(0.52 0.185 5 / 0.06), 0 8px 24px -8px
+      oklch(0.52 0.185 5 / 0.14);
+  }
+  .shadow-elevated {
+    box-shadow: 0 2px 4px oklch(0.52 0.185 5 / 0.08), 0 18px 40px -12px
+      oklch(0.52 0.185 5 / 0.22);
+  }
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

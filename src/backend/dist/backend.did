@@ -1,0 +1,136 @@
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Timestamp = int;
+type StoryView = 
+ record {
+   deliveredAt: Timestamp;
+   description: text;
+   garmentsDelivered: nat;
+   id: StoryId;
+   photoUrl: text;
+   title: text;
+ };
+type StoryId = nat;
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type NewStory = 
+ record {
+   deliveredAt: Timestamp;
+   description: text;
+   garmentsDelivered: nat;
+   photoUrl: text;
+   title: text;
+ };
+type NewGarment = 
+ record {
+   condition: Condition;
+   description: text;
+   garmentType: text;
+   modality: Modality;
+   photoUrl: text;
+   size: text;
+ };
+type Modality = 
+ variant {
+   donacion;
+   intercambio;
+   venta: nat;
+ };
+type ImpactMetrics = 
+ record {
+   donationsMade: nat;
+   garmentsReused: nat;
+   peopleBenefited: nat;
+ };
+type GarmentView = 
+ record {
+   condition: Condition;
+   createdAt: Timestamp;
+   description: text;
+   garmentType: text;
+   id: GarmentId;
+   modality: Modality;
+   photoUrl: text;
+   size: text;
+ };
+type GarmentId = nat;
+type GarmentFilter = 
+ record {
+   condition: opt Condition;
+   garmentType: opt text;
+   modality: opt Modality;
+   search: opt text;
+   size: opt text;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type Condition = 
+ variant {
+   buenEstado;
+   comoNueva;
+   nueva;
+   usada;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  addGarment: (input: NewGarment) -> (GarmentView);
+  addStory: (input: NewStory) -> (StoryView);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  execute: (qJson: text) -> (Result) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getGarment: (id: GarmentId) -> (opt GarmentView) query;
+  getImpactMetrics: () -> (ImpactMetrics) query;
+  getStory: (id: StoryId) -> (opt StoryView) query;
+  isCallerAdmin: () -> (bool) query;
+  listGarments: (filter: GarmentFilter) -> (vec GarmentView) query;
+  listStories: () -> (vec StoryView) query;
+  schema: () -> (text) query;
+}

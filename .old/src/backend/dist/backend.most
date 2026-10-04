@@ -1,0 +1,99 @@
+// Version: 4.0.0
+type AccessControlState__201339279 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__230067015<Principal, UserRole__91647283>
+  };
+type Condition__89937829 = {#buenEstado; #comoNueva; #nueva; #usada};
+type Data__44217153<K, V> = {var count : Nat__227979830; kvs : [var ?(K, V)]};
+type GarmentId__176336867 = GarmentId__411530229;
+type GarmentId__411530229 = Nat;
+type Garment__215067047 =
+  {
+    condition : {#buenEstado; #comoNueva; #nueva; #usada};
+    createdAt : Int;
+    description : Text;
+    garmentType : Text;
+    id : Nat;
+    modality : {#donacion; #intercambio; #venta : Nat};
+    photoUrl : Text;
+    size : Text
+  };
+type Garment__513576923 =
+  {
+    condition : Condition__89937829;
+    createdAt : Timestamp__369967300;
+    description : Text;
+    garmentType : Text;
+    id : GarmentId__176336867;
+    modality : Modality__1001350599;
+    photoUrl : Text;
+    size : Text
+  };
+type Internal__283199666<K, V> =
+  {children : [var ?Node__204828119<K, V>]; data : Data__44217153<K, V>};
+type Leaf__598469445<K, V> = {data : Data__44217153<K, V>};
+type Map__230067015<K, V> = Map__405889023<K, V>;
+type Map__405889023<K, V> = Map__603270868<K, V>;
+type Map__603270868<K, V> =
+  {var root : Node__204828119<K, V>; var size : Nat__227979830};
+type Modality__1001350599 = {#donacion; #intercambio; #venta : Nat};
+type Nat__227979830 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__793188255 =
+  {
+    accessControlState : AccessControlState__201339279;
+    garmentState : {var nextGarmentId : Nat};
+    garments : Map__230067015<Nat, Garment__215067047>;
+    stories : Map__230067015<Nat, Story__848513346>;
+    storyState : {var nextStoryId : Nat}
+  };
+type Node__204828119<K, V> =
+  {#internal : Internal__283199666<K, V>; #leaf : Leaf__598469445<K, V>};
+type OldActor__904324871 = {};
+type StoryId__128844645 = Nat;
+type StoryId__751390924 = StoryId__128844645;
+type Story__460753590 =
+  {
+    deliveredAt : Timestamp__509953734;
+    description : Text;
+    garmentsDelivered : Nat;
+    id : StoryId__751390924;
+    photoUrl : Text;
+    title : Text
+  };
+type Story__848513346 =
+  {
+    deliveredAt : Int;
+    description : Text;
+    garmentsDelivered : Nat;
+    id : Nat;
+    photoUrl : Text;
+    title : Text
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__369967300 = Timestamp__301639476;
+type Timestamp__509953734 = Timestamp__301639476;
+type UserRole__91647283 = {#admin; #guest; #user};
+{
+  "20261004_000000" : OldActor__904324871 -> NewActor__793188255
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__230067015<Principal, UserRole__91647283>
+    };
+  stable garmentState : {var nextGarmentId : Nat};
+  stable garments :
+    {
+      var root : Node__204828119<GarmentId__176336867, Garment__513576923>;
+      var size : Nat__227979830
+    };
+  stable stories :
+    {
+      var root : Node__204828119<StoryId__751390924, Story__460753590>;
+      var size : Nat__227979830
+    };
+  stable storyState : {var nextStoryId : Nat}
+};
